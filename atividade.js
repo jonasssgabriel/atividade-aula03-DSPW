@@ -1,5 +1,6 @@
 // 1. Importando o array de livros da nossa "base de dados"
-const livros = require('./biblioteca');
+const livros = require('C:\\Users\\labins.pmw\\Documents\\atividade-aula03-DSPW\\biblioteca.js');
+
 
 // ------------------------------------------------------------------------
 // ATIVIDADE 1: Encontrar livros de um gênero específico
@@ -9,11 +10,18 @@ const livros = require('./biblioteca');
 // ------------------------------------------------------------------------
 
 // Sua vez
+function encontrarLivrosPorGenero(genero) {
+    return livros.filter(function(livro) {
+        return livro.genero === genero;
+    });
+}
+
+
 
 // Teste da Atividade 1
 console.log('--- Atividade 1: Livros de Ficção Científica (Função Tradicional) ---');
-// const livrosDeFiccao = encontrarLivrosPorGenero('Ficção Científica');
-// console.log(livrosDeFiccao);
+const livrosDeFiccao = encontrarLivrosPorGenero('Ficção Científica');
+console.log(livrosDeFiccao);
 
 
 // ------------------------------------------------------------------------
@@ -24,12 +32,13 @@ console.log('--- Atividade 1: Livros de Ficção Científica (Função Tradicion
 
 
 // Sua vez
+const encontrarLivrosPorGeneroArrow = (genero) => livros.filter(livros => livros.genero === genero);
 
 
 // Teste da Atividade 2
 console.log('\n--- Atividade 2: Livros de Distopia (Arrow Function) ---');
-// const livrosDeDistopia = encontrarLivrosPorGeneroArrow('Distopia');
-// console.log(livrosDeDistopia);
+const livrosDeDistopia = encontrarLivrosPorGeneroArrow('Distopia');
+console.log(livrosDeDistopia);
 
 
 // ------------------------------------------------------------------------
@@ -41,12 +50,17 @@ console.log('\n--- Atividade 2: Livros de Distopia (Arrow Function) ---');
 
 
 // Sua vez
-
-
+function obterApenasTitulos(){
+    const titulos = [];
+    for(let i = 0; i<livros.length; i++ ){
+    titulos.push(livros[i].titulo);
+    }
+    return titulos;
+}
 // Teste da Atividade 3
 console.log('\n--- Atividade 3: Lista de todos os títulos ---');
-// const todosOsTitulos = obterApenasTitulos();
-// console.log(todosOsTitulos);
+const todosOsTitulos = obterApenasTitulos();
+console.log(todosOsTitulos);
 
 
 // ------------------------------------------------------------------------
@@ -60,14 +74,13 @@ console.log('\n--- Atividade 3: Lista de todos os títulos ---');
 
 
 // Sua vez
-
+const livrosDeAutorAposAno = (nome, ano) => 
+    livros.filter(livros => livros.autor === nome && livros.anoPublicacao > ano );
 
 // Teste da Atividade 4
 console.log('\n--- Atividade 4: Livros de J.R.R. Tolkien publicados após 1950 ---');
-// const livrosTolkienPos1950 = livrosDeAutorAposAno('J.R.R. Tolkien', 1950);
-// console.log(livrosTolkienPos1950);
-
-
+const livrosTolkienPos1950 = livrosDeAutorAposAno('J.R.R. Tolkien', 1950);
+console.log(livrosTolkienPos1950);
 
 // ------------------------------------------------------------------------
 // ATIVIDADE 5: Criando Cartões de Apresentação com Desestruturação
@@ -81,12 +94,14 @@ console.log('\n--- Atividade 4: Livros de J.R.R. Tolkien publicados após 1950 -
 // de cada objeto livro diretamente no parâmetro da função do .map().
 // ------------------------------------------------------------------------
 
-
-
-
 // Sua vez
+function criarCartoesDeLivros() {
+    return livros.map(({ titulo, autor, anoPublicacao }) =>
+      `Título: ${titulo} | Autor: ${autor} | Ano: ${anoPublicacao}`
+    );
+  }
   
 // Teste da Atividade 5
 console.log('\n--- Atividade 5: Cartões de Apresentação dos Livros ---');
-// const cartoes = criarCartoesDeLivros();
-// console.log(cartoes);
+const cartoes = criarCartoesDeLivros();
+console.log(cartoes);
